@@ -1,0 +1,39 @@
+{% extends "products/base.html" %}
+{% block title %}Daftar Produk{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4 text-gray-800">Daftar Produk</h1>
+
+<div class="mb-4">
+  <a href="{% url 'product_create' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow">
+    ➕ Tambah Produk
+  </a>
+</div>
+
+<table class="min-w-full bg-white border border-gray-300 rounded-lg overflow-hidden">
+  <thead class="bg-gray-200 text-gray-700">
+    <tr>
+      <th class="px-4 py-2 text-left">Nama</th>
+      <th class="px-4 py-2 text-left">Harga</th>
+      <th class="px-4 py-2 text-left">Deskripsi</th>
+      <th class="px-4 py-2 text-center">Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in products %}
+    <tr class="border-t hover:bg-gray-50">
+      <td class="px-4 py-2">{{ p.name }}</td>
+      <td class="px-4 py-2">Rp {{ p.price }}</td>
+      <td class="px-4 py-2 text-gray-600">{{ p.description }}</td>
+      <td class="px-4 py-2 text-center space-x-2">
+        <a href="{% url 'product_update' p.id %}" class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-md">Edit</a>
+        <a href="{% url 'product_delete' p.id %}" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md">Hapus</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4" class="text-center text-gray-500 py-4">Belum ada produk.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

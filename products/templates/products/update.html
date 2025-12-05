@@ -1,0 +1,15 @@
+{% extends "products/base.html" %}
+{% block title %}Edit Produk{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-semibold mb-6 text-gray-800">Edit Produk</h1>
+
+<form method="post" class="space-y-4">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <div class="flex space-x-3">
+    <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md">✏️ Update</button>
+    <a href="{% url 'product_list' %}" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md">Kembali</a>
+  </div>
+</form>
+{% endblock %}
